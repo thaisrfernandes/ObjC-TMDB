@@ -12,7 +12,16 @@
 
 - (NSString *)getUrl:(NSString *)param :(NSNumber *)pages
 {
-    return [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=29e140b5aab9879b19e9118a0af356c9&language=en-US&page=%@",  param, pages];
+    return [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=ed59a401ccb87b2fa3fd6a859f9563c4&language=en-US&page=%@",  param, pages];
 }
+
+- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(Movie* _Nullable movie))completionHandler{
+    
+}
+ 
+- (void)fetchMoviePoster:(NSURL*_Nullable)url andCompletionHandler:(void(^_Nullable)(UIImage* _Nullable image))completionHandler{
+    
+}
+
 
 @end
