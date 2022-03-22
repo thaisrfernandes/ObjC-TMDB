@@ -17,7 +17,6 @@
 
 @property NSMutableArray<Movie*>* _Nullable movie;
 
-
 - (NSString *_Nullable)getUrl:(NSString*_Nullable)param :(NSNumber*_Nullable)pages;
 
 - (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(Movie* _Nullable movie))completionHandler;

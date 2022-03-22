@@ -32,63 +32,87 @@ NSArray<Movie*>* movie = @[];
     if (url == NULL){
         return;
     }
-
+    
     dispatch_semaphore_t dispatchSemaphore = dispatch_semaphore_create(0);
-
-
+    
+    
     NSArray<Movie*>* localMovies = @[];
     
-    NSArray<TemporaryMovie*>* localTempMovies = @[];
+    NSMutableArray<TemporaryMovie*>* localTempMovies = @[];
     
     
     NSURLSession *session = [NSURLSession sharedSession];
-
+    
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-    {
-      NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-      if(httpResponse.statusCode == 200)
-      {
-        NSError *parseError = nil;
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-        NSLog(@"The response is - %@",responseDictionary);
-      }
-      else
-      {
-        NSLog(@"Error");
-      }
+                                      {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if(httpResponse.statusCode == 200)
+        {
+            NSError *parseError = nil;
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+            NSDictionary *movies = [responseDictionary objectForKey:@"results"];
+            
+            if (responseDictionary == nil) {
+                dispatch_semaphore_signal(dispatchSemaphore);
+                return;
+            }
+            
+
+            
+            for (id movieJSONObject in movies)
+            {
+                TemporaryMovie *tempMovie = [[TemporaryMovie alloc] init];
+                
+                tempMovie.id = [movieJSONObject objectForKey:@"id"];
+                tempMovie.title = [movieJSONObject objectForKey:@"original_title"];
+                tempMovie.overview = [movieJSONObject objectForKey:@"overview"];
+                tempMovie.rating = [movieJSONObject objectForKey:@"vote_average"];
+                tempMovie.posterPath = [movieJSONObject objectForKey:@"poster_path"];
+
+//                [localTempMovies addObject:@(tempMovie)];
+                
+                NSLog(@"%@", tempMovie);
+            }
+            
+//            NSLog(@"The response is - %@",responseDictionary);
+        }
+        else
+        {
+            NSLog(@"Error");
+        }
     }];
     [dataTask resume];
     
     
     //MARK: Movies request
-//            URLSession.shared.dataTask(with: url) { data, response, error in
-//                guard let unwrappedData = data,
-//                      let json = try? JSONSerialization.jsonObject(with: unwrappedData, options: .fragmentsAllowed) as? [String: Any],
-//                      let movies = json["results"] as? [MovieJSON]
-//                else { dispatchSemaphore.signal(); return }
-//
-//                for movieJSONObject in movies {
-//                    guard let id = movieJSONObject["id"] as? Int,
-//                          let title = movieJSONObject["original_title"] as? String,
-//                          let overview = movieJSONObject["overview"] as? String,
-//                          let rating = movieJSONObject["vote_average"] as? Double,
-//                          let posterPath = movieJSONObject["poster_path"] as? String
-//                    else { continue }
-//
-//                    let tempMovie = TemporaryMovie(id: id, title: title, overview: overview, rating: rating, posterPath: posterPath)
-//                    localTempMovies.append(tempMovie)
-//
-//                    //print("🟡🟡🎥🟡🟡")
-//                }
-//
-//                dispatchSemaphore.signal()
-//                //print("🟢🟢🎥🟢🟢")
-//            }
-//            .resume()
-//
-
+    //            URLSession.shared.dataTask(with: url) { data, response, error in
+    //                guard let unwrappedData = data,
+    //                      let json = try? JSONSerialization.jsonObject(with: unwrappedData, options: .fragmentsAllowed) as? [String: Any],
+    //                      let movies = json["results"] as? [MovieJSON]
+    //                else { dispatchSemaphore.signal(); return }
+    //
+    //                for movieJSONObject in movies {
+    //                    guard let id = movieJSONObject["id"] as? Int,
+    //                          let title = movieJSONObject["original_title"] as? String,
+    //                          let overview = movieJSONObject["overview"] as? String,
+    //                          let rating = movieJSONObject["vote_average"] as? Double,
+    //                          let posterPath = movieJSONObject["poster_path"] as? String
+    //                    else { continue }
+    //
+    //                    let tempMovie = TemporaryMovie(id: id, title: title, overview: overview, rating: rating, posterPath: posterPath)
+    //                    localTempMovies.append(tempMovie)
+    //
+    //                    //print("🟡🟡🎥🟡🟡")
+    //                }
+    //
+    //                dispatchSemaphore.signal()
+    //                //print("🟢🟢🎥🟢🟢")
+    //            }
+    //            .resume()
+    //
+    
 }
- 
+
 - (void)fetchMoviePoster:(NSURL*_Nullable)url andCompletionHandler:(void(^_Nullable)(UIImage* _Nullable image))completionHandler{
     
 }
