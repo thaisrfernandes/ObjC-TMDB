@@ -7,8 +7,11 @@
 
 #import "ViewController.h"
 #import "Model/Movie.h"
+#import "Model/TMDBService.h"
+
 @interface ViewController ()
 @property Movie * movie;
+@property TMDBService * tmdbService;
 @end
 
 @implementation ViewController
@@ -19,6 +22,9 @@
     // Do any additional setup after loading the view.
     [self initializeProperites];
     NSLog(@"%@", _movie.title);
+    [_tmdbService requestMovies:@"popular" :@1 andCompletionHandler:^(Movie * _Nullable movie) {
+        NSLog(@"Funcionando");
+    }];
 }
 
 - (void) initializeProperites {
@@ -28,6 +34,10 @@
       _movie.title = @"Homem Aranha";
       _movie.overview = @"Miranha multiverso";
   }
+
+    if(_tmdbService == nil){
+        _tmdbService = [[TMDBService alloc] init];
+    }
 }
 
 

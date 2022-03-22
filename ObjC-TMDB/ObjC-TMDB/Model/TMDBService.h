@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "Movie.h"
+#import "TemporaryMovie.h"
 
 
 @interface TMDBService : NSObject
