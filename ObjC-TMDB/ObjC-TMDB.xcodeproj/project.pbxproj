@@ -15,6 +15,7 @@
 		8923FA2827E901A4009DE0D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8923FA2627E901A4009DE0D9 /* LaunchScreen.storyboard */; };
 		8923FA2B27E901A4009DE0D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923FA2A27E901A4009DE0D9 /* main.m */; };
 		8923FA3427E90873009DE0D9 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923FA3327E90873009DE0D9 /* Movie.m */; };
+		89D2017C27EA53FB003AC5CA /* TemporaryMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */; };
 		B195713C27E9400200F9EEE7 /* TMDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = B195713B27E9400200F9EEE7 /* TMDBService.m */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,8 @@
 		8923FA2A27E901A4009DE0D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8923FA3227E9026F009DE0D9 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		8923FA3327E90873009DE0D9 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		89D2017A27EA53C2003AC5CA /* TemporaryMovie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemporaryMovie.h; sourceTree = "<group>"; };
+		89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemporaryMovie.m; sourceTree = "<group>"; };
 		B195713A27E93BF000F9EEE7 /* TMDBService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBService.h; sourceTree = "<group>"; };
 		B195713B27E9400200F9EEE7 /* TMDBService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMDBService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +93,8 @@
 				8923FA3327E90873009DE0D9 /* Movie.m */,
 				B195713A27E93BF000F9EEE7 /* TMDBService.h */,
 				B195713B27E9400200F9EEE7 /* TMDBService.m */,
+				89D2017A27EA53C2003AC5CA /* TemporaryMovie.h */,
+				89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8923FA2027E901A3009DE0D9 /* ViewController.m in Sources */,
+				89D2017C27EA53FB003AC5CA /* TemporaryMovie.m in Sources */,
 				8923FA1A27E901A3009DE0D9 /* AppDelegate.m in Sources */,
 				8923FA3427E90873009DE0D9 /* Movie.m in Sources */,
 				8923FA2B27E901A4009DE0D9 /* main.m in Sources */,
