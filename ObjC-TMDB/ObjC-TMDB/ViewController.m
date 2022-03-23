@@ -22,8 +22,12 @@
     // Do any additional setup after loading the view.
     [self initializeProperites];
     NSLog(@"%@", _movie.title);
-    [_tmdbService requestMovies:@"popular" :@1 andCompletionHandler:^(Movie * _Nullable movie) {
+    [_tmdbService requestMovies:@"popular" :@1 andCompletionHandler:^(NSArray<Movie*> * _Nullable movies) {
         NSLog(@"Funcionando");
+        
+        for (Movie *mv in movies) {
+            NSLog(@"%@", mv.title);
+        }
     }];
 }
 
@@ -39,7 +43,5 @@
         _tmdbService = [[TMDBService alloc] init];
     }
 }
-
-
 
 @end

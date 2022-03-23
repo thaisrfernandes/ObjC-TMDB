@@ -7,19 +7,19 @@
 
 #import <Foundation/Foundation.h>
 #import "TMDBService.h"
+#import <UIKit/UIKit.h>
 
 @implementation TMDBService
 
 NSString *BASE_IMAGE_URL = @"https://image.tmdb.org/t/p/w154";
 NSArray<Movie*>* movie = @[];
 
-
 - (NSString *)getUrl:(NSString *)param :(NSNumber *)pages
 {
     return [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=ed59a401ccb87b2fa3fd6a859f9563c4&language=en-US&page=%@",  param, pages];
 }
 
-- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(Movie* _Nullable movie))completionHandler{
+- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(NSArray<Movie*>* _Nullable movies))completionHandler{
     
     if (pages < 0) {
         [NSException raise:@"NumberPagesInvalid" format:@"The number of pages is invalid. Pages count: (pages)"];
@@ -28,19 +28,16 @@ NSArray<Movie*>* movie = @[];
     NSString *baseURL = [self getUrl:type :pages];
     NSURLRequest *url = [NSURLRequest requestWithURL: [NSURL URLWithString:baseURL]];
     
-    
-    if (url == NULL){
+    if (url == NULL) {
         return;
     }
     
     dispatch_semaphore_t dispatchSemaphore = dispatch_semaphore_create(0);
     
+    NSMutableArray<Movie*>* localMovies = [NSMutableArray array];
     
-    NSArray<Movie*>* localMovies = @[];
-    
-    NSMutableArray<TemporaryMovie*>* localTempMovies = @[];
-    
-    
+    NSMutableArray<TemporaryMovie*>* localTempMovies = [NSMutableArray array];
+
     NSURLSession *session = [NSURLSession sharedSession];
     
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
@@ -57,8 +54,6 @@ NSArray<Movie*>* movie = @[];
                 return;
             }
             
-
-            
             for (id movieJSONObject in movies)
             {
                 TemporaryMovie *tempMovie = [[TemporaryMovie alloc] init];
@@ -69,53 +64,60 @@ NSArray<Movie*>* movie = @[];
                 tempMovie.rating = [movieJSONObject objectForKey:@"vote_average"];
                 tempMovie.posterPath = [movieJSONObject objectForKey:@"poster_path"];
 
-//                [localTempMovies addObject:@(tempMovie)];
-                
-                NSLog(@"%@", tempMovie);
+                [localTempMovies addObject:tempMovie];
             }
             
-//            NSLog(@"The response is - %@",responseDictionary);
-        }
-        else
-        {
-            NSLog(@"Error");
+            dispatch_semaphore_signal(dispatchSemaphore);
         }
     }];
     [dataTask resume];
     
+    dispatch_semaphore_wait(dispatchSemaphore, DISPATCH_TIME_FOREVER); //qual o melhor time?
+
+    dispatch_group_t dispatchGroup = dispatch_group_create();
+    dispatch_semaphore_t imageSemaphore = dispatch_semaphore_create(1);
+
+    for (TemporaryMovie *tempM in localTempMovies) {
+        NSString *imgPath = [NSString stringWithFormat: @"%@%@", BASE_IMAGE_URL, tempM.posterPath];
+        NSURL *imgUrl = [NSURL URLWithString: imgPath];
+        
+        dispatch_group_enter(dispatchGroup);
+        
+        [self fetchMoviePoster:imgUrl andCompletionHandler:^(UIImage * _Nullable image) {
+            Movie *movie = [[Movie alloc] init];
+            movie.id = tempM.id;
+            movie.title = tempM.title;
+            movie.overview = tempM.overview;
+            movie.rating = tempM.rating;
+            movie.imageCover = image;
+            
+            dispatch_semaphore_wait(imageSemaphore, DISPATCH_TIME_FOREVER);
+            [localMovies addObject:movie];
+            
+            dispatch_semaphore_signal(imageSemaphore);
+            
+            dispatch_group_leave(dispatchGroup);
+        }];
+    }
     
-    //MARK: Movies request
-    //            URLSession.shared.dataTask(with: url) { data, response, error in
-    //                guard let unwrappedData = data,
-    //                      let json = try? JSONSerialization.jsonObject(with: unwrappedData, options: .fragmentsAllowed) as? [String: Any],
-    //                      let movies = json["results"] as? [MovieJSON]
-    //                else { dispatchSemaphore.signal(); return }
-    //
-    //                for movieJSONObject in movies {
-    //                    guard let id = movieJSONObject["id"] as? Int,
-    //                          let title = movieJSONObject["original_title"] as? String,
-    //                          let overview = movieJSONObject["overview"] as? String,
-    //                          let rating = movieJSONObject["vote_average"] as? Double,
-    //                          let posterPath = movieJSONObject["poster_path"] as? String
-    //                    else { continue }
-    //
-    //                    let tempMovie = TemporaryMovie(id: id, title: title, overview: overview, rating: rating, posterPath: posterPath)
-    //                    localTempMovies.append(tempMovie)
-    //
-    //                    //print("🟡🟡🎥🟡🟡")
-    //                }
-    //
-    //                dispatchSemaphore.signal()
-    //                //print("🟢🟢🎥🟢🟢")
-    //            }
-    //            .resume()
-    //
-    
+    dispatch_group_notify(dispatchGroup, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        completionHandler(localMovies);
+    });
 }
 
-- (void)fetchMoviePoster:(NSURL*_Nullable)url andCompletionHandler:(void(^_Nullable)(UIImage* _Nullable image))completionHandler{
-    
+- (void)fetchMoviePoster:(NSURL*_Nullable)url andCompletionHandler:(void(^_Nullable)(UIImage* _Nullable image))completionHandler {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSData *data = [NSData dataWithContentsOfURL: url];
+        
+        if (data == nil) {
+            completionHandler(nil);
+            return;
+        }
+        
+        UIImage *image = [UIImage imageWithData:data];
+        
+        completionHandler(image);
+    });
 }
-
 
 @end
