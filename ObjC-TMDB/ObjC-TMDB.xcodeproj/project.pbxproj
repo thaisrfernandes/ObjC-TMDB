@@ -15,6 +15,7 @@
 		8923FA2827E901A4009DE0D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8923FA2627E901A4009DE0D9 /* LaunchScreen.storyboard */; };
 		8923FA2B27E901A4009DE0D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923FA2A27E901A4009DE0D9 /* main.m */; };
 		8923FA3427E90873009DE0D9 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 8923FA3327E90873009DE0D9 /* Movie.m */; };
+		898B240027EB93070057A109 /* MovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898B23FF27EB93070057A109 /* MovieCell.m */; };
 		89D2017C27EA53FB003AC5CA /* TemporaryMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */; };
 		B195713C27E9400200F9EEE7 /* TMDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = B195713B27E9400200F9EEE7 /* TMDBService.m */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,8 @@
 		8923FA2A27E901A4009DE0D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8923FA3227E9026F009DE0D9 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		8923FA3327E90873009DE0D9 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		898B23FE27EB92FD0057A109 /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
+		898B23FF27EB93070057A109 /* MovieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
 		89D2017A27EA53C2003AC5CA /* TemporaryMovie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemporaryMovie.h; sourceTree = "<group>"; };
 		89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemporaryMovie.m; sourceTree = "<group>"; };
 		B195713A27E93BF000F9EEE7 /* TMDBService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBService.h; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		8923FA1727E901A3009DE0D9 /* ObjC-TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				898B23FC27EB92A20057A109 /* Views */,
 				8923FA3127E90219009DE0D9 /* Model */,
 				8923FA1827E901A3009DE0D9 /* AppDelegate.h */,
 				8923FA1927E901A3009DE0D9 /* AppDelegate.m */,
@@ -97,6 +101,23 @@
 				89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		898B23FC27EB92A20057A109 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				898B23FD27EB92F20057A109 /* MovieCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		898B23FD27EB92F20057A109 /* MovieCell */ = {
+			isa = PBXGroup;
+			children = (
+				898B23FE27EB92FD0057A109 /* MovieCell.h */,
+				898B23FF27EB93070057A109 /* MovieCell.m */,
+			);
+			path = MovieCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +196,7 @@
 				8923FA3427E90873009DE0D9 /* Movie.m in Sources */,
 				8923FA2B27E901A4009DE0D9 /* main.m in Sources */,
 				B195713C27E9400200F9EEE7 /* TMDBService.m in Sources */,
+				898B240027EB93070057A109 /* MovieCell.m in Sources */,
 				8923FA1D27E901A3009DE0D9 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
