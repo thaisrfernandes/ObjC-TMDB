@@ -17,10 +17,9 @@
 
 @property NSMutableArray<Movie*>* _Nullable movie;
 
-
 - (NSString *_Nullable)getUrl:(NSString*_Nullable)param :(NSNumber*_Nullable)pages;
 
-- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(Movie* _Nullable movie))completionHandler;
+- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(NSArray<Movie*>* _Nullable movies))completionHandler;
  
 - (void)fetchMoviePoster:(NSURL*_Nullable)url andCompletionHandler:(void(^_Nullable)(UIImage* _Nullable image))completionHandler;
 
