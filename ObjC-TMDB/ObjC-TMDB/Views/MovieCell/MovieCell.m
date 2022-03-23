@@ -6,14 +6,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "MovieCell.h"
 
-@interface MovieCell ()
+@implementation MovieCell
 
-@property (weak) IBOutlet UIImageView *coverImage;
-@property (weak) IBOutlet UILabel *titleLabel;
-@property (weak) IBOutlet UILabel *overviewLabel;
-@property (weak) IBOutlet UILabel *rating;
+-(void)awakeFromNib {
+    [super awakeFromNib];
+}
 
 @end
 
