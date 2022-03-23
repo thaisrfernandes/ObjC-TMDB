@@ -10,8 +10,9 @@
 
 @interface MovieCell : UITableViewCell
 
-
+@property (weak) IBOutlet UIImageView *coverImage;
+@property (weak) IBOutlet UILabel *titleLabel;
+@property (weak) IBOutlet UILabel *overviewLabel;
+@property (weak) IBOutlet UILabel *rating;
 
 @end
-
-
