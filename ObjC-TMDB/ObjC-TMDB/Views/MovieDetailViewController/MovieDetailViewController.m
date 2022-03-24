@@ -7,6 +7,7 @@
 
 #import "MovieDetailViewController.h"
 #import "../MovieOverviewCell/MovieOverviewCell.h"
+#import "../MoviePresentationCell/MoviePresentationCell.h"
 
 @interface MovieDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 @end
@@ -46,16 +47,13 @@
     }
     
     if(indexPath.row == 0) {
-        MovieOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:_movieOverViewCellID forIndexPath:indexPath];
+        MoviePresentationCell *cell = [tableView dequeueReusableCellWithIdentifier:_movieOverViewCellID forIndexPath:indexPath];
         
-        //        let cell = tableView.dequeueReusableCell(withIdentifier: moviePresentationCellID, for: indexPath) as! MoviePresentationCell
-        //
-        //                    cell.imageCover.image = unwrappedMovie.imageCover
-        //                    cell.titleLabel.text = unwrappedMovie.title
-        //                    cell.infoLabel.text = unwrappedMovie.title
-        //                    cell.ratingLabel.text = String(unwrappedMovie.rating)
-        //
-        //                    return cell
+        cell.imageCover.image = _movie.imageCover;
+        cell.titleLabel.text = _movie.title;
+        cell.infoLabel.text = _movie.title;
+        cell.ratingLabel.text = [NSString stringWithFormat: @"%@", _movie.rating];
+
         return cell;
     } else {
         MovieOverviewCell *cell = [tableView dequeueReusableCellWithIdentifier:_movieOverViewCellID forIndexPath:indexPath];
@@ -66,6 +64,11 @@
         return cell;
     }
 }
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
 
 @end
 
