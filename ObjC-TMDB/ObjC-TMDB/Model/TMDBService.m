@@ -19,7 +19,7 @@ NSArray<Movie*>* movie = @[];
     return [NSString stringWithFormat:@"https://api.themoviedb.org/3/movie/%@?api_key=ed59a401ccb87b2fa3fd6a859f9563c4&language=en-US&page=%@",  param, pages];
 }
 
-- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(NSArray<Movie*>* _Nullable movies))completionHandler{
+- (void)requestMovies:(NSString*_Nullable)type :(NSNumber*_Nullable)pages andCompletionHandler:(void(^_Nullable)(NSMutableArray<Movie*>* _Nullable movies))completionHandler{
     
     if (pages < 0) {
         [NSException raise:@"NumberPagesInvalid" format:@"The number of pages is invalid. Pages count: (pages)"];
