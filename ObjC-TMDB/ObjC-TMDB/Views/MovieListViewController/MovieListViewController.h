@@ -12,19 +12,18 @@
 
 @interface MovieListViewController : UIViewController
 
-@property (weak) IBOutlet UITableView * _Nullable tableView;
+@property (weak) IBOutlet UITableView * tableView;
 
-- (void)prepareForSegue:(UIStoryboardSegue *_Nullable)segue sender:(id _Nullable )sender;
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id  )sender;
 
-@property TMDBService * _Nullable service;
+@property TMDBService *  service;
 
-
-@property NSMutableArray<Movie*>* _Nullable filteredPopularMovies;
-@property NSMutableArray<Movie*>* _Nullable filteredNowPlayingMovies;
-@property NSMutableArray<Movie*>* _Nullable popularMovies;
-@property NSMutableArray<Movie*>* _Nullable nowPlayingMovies;
-@property NSString* _Nullable cellID;
-@property UISearchController* _Nullable searchController;
+@property NSMutableArray<Movie*>*  filteredPopularMovies;
+@property NSMutableArray<Movie*>*  filteredNowPlayingMovies;
+@property NSMutableArray<Movie*>*  popularMovies;
+@property NSMutableArray<Movie*>*  nowPlayingMovies;
+@property NSString*  cellID;
+@property UISearchController*  searchController;
 
 @end
 

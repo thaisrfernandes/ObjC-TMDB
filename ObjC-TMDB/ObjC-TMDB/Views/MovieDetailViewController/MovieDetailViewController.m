@@ -27,7 +27,7 @@
 
 -(void)initializeProperties {
     if(!_movieOverViewCellID) {
-        _movieOverViewCellID = @"moviePresentationCell";
+        _movieOverViewCellID = @"movieOverViewCellID";
     }
     if(!_moviePresentationCellID) {
         _moviePresentationCellID = @"moviePresentationCellID";
@@ -37,17 +37,15 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return !_movie ? 0 : 2;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(!_movie.id) {
         [NSException raise:@"InvalidMovie" format:@"No movie was received to diplay"];
     }
     
+    NSLog(@"%ld <- print", (long)indexPath.row);
+    
     if(indexPath.row == 0) {
-        MoviePresentationCell *cell = [tableView dequeueReusableCellWithIdentifier:_movieOverViewCellID forIndexPath:indexPath];
+        MoviePresentationCell *cell = [tableView dequeueReusableCellWithIdentifier:_moviePresentationCellID forIndexPath:indexPath];
         
         cell.imageCover.image = _movie.imageCover;
         cell.titleLabel.text = _movie.title;
@@ -66,7 +64,7 @@
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 
 
