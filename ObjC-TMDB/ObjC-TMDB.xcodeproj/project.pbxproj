@@ -20,6 +20,8 @@
 		898B240C27EB9C3D0057A109 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898B240B27EB9C3D0057A109 /* MovieDetailViewController.m */; };
 		89D2017C27EA53FB003AC5CA /* TemporaryMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */; };
 		B195713C27E9400200F9EEE7 /* TMDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = B195713B27E9400200F9EEE7 /* TMDBService.m */; };
+		B195714727EBAE8200F9EEE7 /* MoviePresentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B195714627EBAE8200F9EEE7 /* MoviePresentationCell.m */; };
+		B195714D27EBAF0800F9EEE7 /* MovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B195714C27EBAF0800F9EEE7 /* MovieListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,10 @@
 		89D2017B27EA53FB003AC5CA /* TemporaryMovie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemporaryMovie.m; sourceTree = "<group>"; };
 		B195713A27E93BF000F9EEE7 /* TMDBService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDBService.h; sourceTree = "<group>"; };
 		B195713B27E9400200F9EEE7 /* TMDBService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMDBService.m; sourceTree = "<group>"; };
+		B195714627EBAE8200F9EEE7 /* MoviePresentationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviePresentationCell.m; sourceTree = "<group>"; };
+		B195714827EBAE8B00F9EEE7 /* MoviePresentationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviePresentationCell.h; sourceTree = "<group>"; };
+		B195714B27EBAEFE00F9EEE7 /* MovieListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieListViewController.h; sourceTree = "<group>"; };
+		B195714C27EBAF0800F9EEE7 /* MovieListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,8 @@
 		898B23FC27EB92A20057A109 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B195714A27EBAEEB00F9EEE7 /* MovieListViewController */,
+				B195714527EBAE6600F9EEE7 /* MoviePresentationCell */,
 				898B240927EB9C280057A109 /* MovieDetailViewController */,
 				898B240527EB97280057A109 /* MovieOverviewCell */,
 				898B23FD27EB92F20057A109 /* MovieCell */,
@@ -144,6 +152,24 @@
 				898B240B27EB9C3D0057A109 /* MovieDetailViewController.m */,
 			);
 			path = MovieDetailViewController;
+			sourceTree = "<group>";
+		};
+		B195714527EBAE6600F9EEE7 /* MoviePresentationCell */ = {
+			isa = PBXGroup;
+			children = (
+				B195714827EBAE8B00F9EEE7 /* MoviePresentationCell.h */,
+				B195714627EBAE8200F9EEE7 /* MoviePresentationCell.m */,
+			);
+			path = MoviePresentationCell;
+			sourceTree = "<group>";
+		};
+		B195714A27EBAEEB00F9EEE7 /* MovieListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B195714B27EBAEFE00F9EEE7 /* MovieListViewController.h */,
+				B195714C27EBAF0800F9EEE7 /* MovieListViewController.m */,
+			);
+			path = MovieListViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,9 +249,11 @@
 				8923FA3427E90873009DE0D9 /* Movie.m in Sources */,
 				8923FA2B27E901A4009DE0D9 /* main.m in Sources */,
 				B195713C27E9400200F9EEE7 /* TMDBService.m in Sources */,
+				B195714D27EBAF0800F9EEE7 /* MovieListViewController.m in Sources */,
 				898B240027EB93070057A109 /* MovieCell.m in Sources */,
 				8923FA1D27E901A3009DE0D9 /* SceneDelegate.m in Sources */,
 				898B240827EB973C0057A109 /* MovieOverviewCell.m in Sources */,
+				B195714727EBAE8200F9EEE7 /* MoviePresentationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
